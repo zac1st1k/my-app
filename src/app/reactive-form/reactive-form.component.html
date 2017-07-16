@@ -1,0 +1,25 @@
+<p>
+  form works!
+</p>
+<form [formGroup]="registerForm">
+  <label>Firstname:</label>
+  <input type="text" formControlName="firstname">
+  <p *ngIf="registerForm.controls.firstname.errors && registerForm.controls.firstname.dirty">This field is required!</p>
+
+  <label>Lastname:</label>
+  <input type="text" formControlName="lastname">
+  <p *ngIf="registerForm.controls.lastname.errors && registerForm.controls.lastname.dirty">This field is required!</p>
+
+  <fieldset formGroupName="address">
+    <label>Street:</label>
+    <input type="text" formControlName="street">
+
+    <label>Zip:</label>
+    <input type="text" formControlName="zip">
+
+    <label>City:</label>
+    <input type="text" formControlName="city">
+  </fieldset>
+
+  <button type="submit">Submit</button>
+</form>
