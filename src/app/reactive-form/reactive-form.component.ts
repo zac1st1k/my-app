@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { RegisterFormValue } from '../model/registerFormValue';
+
 @Component({
   selector: 'app-reactive-form',
   templateUrl: './reactive-form.component.html',
@@ -29,5 +31,9 @@ export class ReactiveFormComponent implements OnInit {
     this.registerForm.controls.firstname.valueChanges.subscribe(value => {
       console.log('firstname changed!', this.registerForm.controls.firstname)
     })
+  }
+
+  onSubmit(registerForm: RegisterFormValue) {
+    console.log('submit ', registerForm);
   }
 }

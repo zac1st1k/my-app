@@ -1,7 +1,7 @@
 <p>
   form works!
 </p>
-<form [formGroup]="registerForm">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
   <label>Firstname:</label>
   <input type="text" formControlName="firstname">
   <p *ngIf="registerForm.controls.firstname.errors && registerForm.controls.firstname.dirty">This field is required!</p>
