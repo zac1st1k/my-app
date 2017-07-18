@@ -2,18 +2,29 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { RegisterFormValue } from '../model/registerFormValue';
+import { NameService } from '../name.service';
 
 @Component({
   selector: 'app-reactive-form',
   templateUrl: './reactive-form.component.html',
-  styleUrls: ['./reactive-form.component.css']
+  styleUrls: ['./reactive-form.component.css'],
+  providers: [{
+    provide: NameService, useClass: class MockNameService {
+      getName() { return 'Mock Name'; }
+    }
+  }],
 })
 export class ReactiveFormComponent implements OnInit {
   registerForm: FormGroup;
+  name: string;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private nameService: NameService,
+  ) {}
 
   ngOnInit() {
+    this.name = this.nameService.getName();
     this.registerForm = this.formBuilder.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
