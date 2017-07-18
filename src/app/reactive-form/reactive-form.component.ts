@@ -25,12 +25,12 @@ export class ReactiveFormComponent implements OnInit {
     });
 
     this.registerForm.valueChanges.subscribe(value => {
-      console.log('registerForm changed!', this.registerForm)
-    })
+      console.log('registerForm changed!', this.registerForm);
+    });
 
     this.registerForm.controls.firstname.valueChanges.subscribe(value => {
-      console.log('firstname changed!', this.registerForm.controls.firstname)
-    })
+      console.log('firstname changed!', this.registerForm.controls.firstname);
+    });
   }
 
   onSubmit(registerForm: RegisterFormValue) {

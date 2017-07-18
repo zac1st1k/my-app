@@ -8,7 +8,7 @@ import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ReactiveFormComponent
+    ReactiveFormComponent,
   ],
   imports: [
     BrowserModule,
