@@ -15,8 +15,14 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.observableService.getHttp()
       .subscribe(
-        response => console.log('success'),
-        error => console.log('fail')
+        response => console.log(response),
+        error => console.log(error)
+      );
+
+    this.observableService.getObservable()
+      .subscribe(
+        response => console.log(response),
+        error => console.log(error)
       );
   }
 }
