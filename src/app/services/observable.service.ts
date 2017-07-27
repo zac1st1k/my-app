@@ -12,8 +12,12 @@ export class ObservableService {
     private http: Http,
   ) {}
 
-  getHttp(): Observable<any> {
-    return this.http.get('123');
+  getResponse(): Observable<Response> {
+    return this.http.get('response');
+  }
+
+  getAny(): Observable<any> {
+    return this.http.get('any');
   }
 
   getObservable(): Observable<any> {

@@ -1,5 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { HttpModule, Http, ResponseOptions, XHRBackend } from '@angular/http';
+import { HttpModule, ResponseOptions, XHRBackend } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
 import { ObservableService } from './observable.service';
@@ -19,23 +19,25 @@ describe('ObservableService', () => {
     expect(observableService).toBeTruthy();
   }));
 
-  it('should return value', inject([ObservableService, XHRBackend], (observableService: ObservableService, mockBackend: MockBackend) => {
+  it('should get value', inject([ObservableService, XHRBackend], (observableService: ObservableService, mockBackend: MockBackend) => {
     mockBackend.connections.subscribe(connection =>
       connection.mockRespond(123)
     );
 
-    observableService.getHttp().subscribe(response =>
+    observableService.getAny().subscribe(response =>
       expect(response).toBe(123)
     );
   }));
 
-  xit('should Response', inject([ObservableService, XHRBackend], (observableService: ObservableService, mockBackend: MockBackend) => {
-    let res;
-    res = new Response(new ResponseOptions({ body: 'fake response' }));
+  it('should get Response', inject([ObservableService, XHRBackend], (observableService: ObservableService, mockBackend: MockBackend) => {
+    let mockRespond;
+    mockRespond = new Response(new ResponseOptions({ body: 'fake response' }));
     mockBackend.connections.subscribe(connection =>
-      connection.mockRespond(res)
+      connection.mockRespond(mockRespond)
     );
-    const response = observableService.getHttp();
-    expect(response).toBe(res);
+
+    observableService.getResponse().subscribe(response =>
+      expect(response).toEqual(mockRespond)
+    );
   }));
 });
