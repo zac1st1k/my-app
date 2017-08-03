@@ -10,7 +10,13 @@ export const AppRoutes: Routes = [
   {
     path: '',
     component: DocListComponent,
-    resolve: ObservableResolve,
+    resolve: {
+      rootModel: ObservableResolve
+    },
+  },
+  {
+    path: 'doc',
+    component: DocListComponent,
   },
   {
     path: 'form',
