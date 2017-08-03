@@ -11,12 +11,14 @@ import { AppRoutes } from './app.route';
 import { ObservableService } from './services/observable.service';
 import { ObservableResolve } from './app.component.resolve';
 import { DocListComponent } from './doc-list/doc-list.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ReactiveFormComponent,
     DocListComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
