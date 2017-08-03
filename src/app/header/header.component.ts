@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  model;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -15,5 +15,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     console.log('header', this.route.snapshot.data['rootModel']);
+    this.model = this.route.snapshot.data['rootModel'].header;
   }
 }

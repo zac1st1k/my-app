@@ -24,7 +24,8 @@ export class ObservableService {
   getObservable(): Observable<any> {
     console.log('loading...');
     return Observable.of({
-      pageLoad: 'rootModel',
+      title: 'observable',
+      header: 'resovled header',
     }).delay(3000);
   }
 

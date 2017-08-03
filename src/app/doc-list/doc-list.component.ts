@@ -19,8 +19,8 @@ export class DocListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log('rootModel', this.route.snapshot.data['rootModel']);
-    this.rootModel = this.route.snapshot.data['rootModel'];
+    console.log('rootModel', this.route.snapshot.parent.data['rootModel']);
+    this.rootModel = this.route.snapshot.parent.data['rootModel'];
 
     this.route.data.subscribe((data) => {
       console.log('subscribe', data.rootModel);
