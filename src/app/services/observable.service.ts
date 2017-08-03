@@ -21,6 +21,13 @@ export class ObservableService {
     });
   }
 
+  getObservable(): Observable<any> {
+    console.log('loading...');
+    return Observable.of({
+      pageLoad: 'rootModel',
+    }).delay(3000);
+  }
+
   getResponse(): Observable<Response> {
     console.log('loading...');
     return this.http.get('response');
@@ -31,7 +38,7 @@ export class ObservableService {
     return this.http.get('any');
   }
 
-  getObservable(): Observable<any> {
+  getObservableTimeout(): Observable<any> {
     console.log('loading...');
     return new Observable(observer => {
       setTimeout(() => {
@@ -44,12 +51,5 @@ export class ObservableService {
           observer.complete();
       }, 3000);
     });
-  }
-
-  getObservable2(): Observable<any> {
-    console.log('loading...');
-    return Observable.of({
-      pageLoad: 'rootModel',
-    }).delay(3000);
   }
 }

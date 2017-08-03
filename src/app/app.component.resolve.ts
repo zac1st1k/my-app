@@ -8,6 +8,6 @@ export class ObservableResolve implements Resolve<any> {
   constructor(private observableService: ObservableService) {}
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.observableService.getPromise();
+    return this.observableService.getObservable();
   }
 }
