@@ -1,5 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { HttpModule, ResponseOptions, XHRBackend } from '@angular/http';
+import { HttpModule, Response, ResponseOptions, XHRBackend } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
 import { ObservableService } from './observable.service';
@@ -30,14 +30,16 @@ describe('ObservableService', () => {
   }));
 
   it('should get Response', inject([ObservableService, XHRBackend], (observableService: ObservableService, mockBackend: MockBackend) => {
-    let mockRespond;
-    mockRespond = new Response(new ResponseOptions({ body: 'fake response' }));
+    const mockRespond = new Response(new ResponseOptions({ status: 200, body: 'fake response' }));
+    // console.log(mockRespond.toString());
+    // expected: body to be printed
+    // actual: no body got printed
     mockBackend.connections.subscribe(connection =>
       connection.mockRespond(mockRespond)
     );
 
-    observableService.getResponse().subscribe(response =>
-      expect(response).toEqual(mockRespond)
+    observableService.getResponse().subscribe((res: Response) =>
+      expect(res).toEqual(mockRespond)
     );
   }));
 });

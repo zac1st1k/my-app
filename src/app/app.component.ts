@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ObservableService } from './services/observable.service';
+import { Response, ResponseOptions } from '@angular/http';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    const mockRespond = new Response(new ResponseOptions({ status: 200, body: 'fake response' }));
+    // console.log(mockRespond.toString());
+
     this.observableService.getAny()
       .subscribe(
         response => console.log(response),
