@@ -1,21 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import * as R from 'ramda';
 
-interface Person {
-    firstName: string;
-    lastName: string;
-}
-
-class Student {
-    fullName: string;
-    constructor(public firstName: string, public middleInitial: string, public lastName: string) {
-        this.fullName = firstName + ' ' + middleInitial + ' ' + lastName;
-    }
-}
-
-const user = new Student('Jane', 'M.', 'User');
-
-function greeter(person: Person) {
-    return 'Hello, ' + person.firstName + ' ' + person.lastName;
+interface Foo {
+  bar: number;
+  bar2: {
+    bar3: string
+  };
 }
 
 @Component({
@@ -25,31 +15,27 @@ function greeter(person: Person) {
 })
 
 export class AppComponent implements OnInit {
-  rootModel: any;
-
-  constructor(
-  ) {}
-
   ngOnInit() {
-    console.log(greeter(user)); // interface compatible
-    let num: number;
-    num = undefined; // undefined
-    const fibonacci: [] = [1, '1', 2, 3, 5];
-    console.log('rootModel', this.rootModel);
-    console.logj('fibonacci', fibonacci.push(true));
-    function buildName(firstName?: string, lastName: string) {
-        return firstName + ' ' + lastName;
-    }
-    const xcat = buildName(23, 43);
-    console.log('xcat', xcat(true));
-  }
-
-  test () {
-    const bar: {
-        foo: number | null
-    } = {};
-
-    badsdfr.bar.foo.length.length = 3;
-    console.log(bar.bar.foo.length);
+    let foo: Array<Foo>;
+    foo = [{
+      bar: 123,
+      bar2: {
+        bar3: 'abc'
+      }
+    }, {
+      bar: 456,
+      bar2: {
+        bar3: 'cba'
+      }
+    }];
+    // const fooMapped = R.pipe(
+    //   R.map((a: { bar: number, bar2: number}) => ({ bar2: a.bar2 })),
+    //   R.pluck('bar2')
+    //   // R.map((a: { bar2: number}) => ( a.bar2 ))
+    // )(foo);
+    const fooMapped = R.pluck('bar2')(foo) as Array<{
+      bar3: string
+    }>;
+    console.log(fooMapped[0].bar3);
   }
 }
